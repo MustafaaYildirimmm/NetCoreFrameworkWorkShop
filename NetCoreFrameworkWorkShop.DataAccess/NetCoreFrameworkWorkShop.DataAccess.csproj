@@ -4,4 +4,17 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Concrete\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetCoreFrameworkWorkShop.Core\NetCoreFrameworkWorkShop.Core.csproj" />
+    <ProjectReference Include="..\NetCoreFrameworkWorkShop.Entities\NetCoreFrameworkWorkShop.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
