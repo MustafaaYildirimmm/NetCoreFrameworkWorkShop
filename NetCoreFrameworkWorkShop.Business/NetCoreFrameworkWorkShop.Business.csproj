@@ -5,8 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstract\" />
-    <Folder Include="Concrete\" />
+    <PackageReference Include="Autofac" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetCoreFrameworkWorkShop.DataAccess\NetCoreFrameworkWorkShop.DataAccess.csproj" />
+    <ProjectReference Include="..\NetCoreFrameworkWorkShop.Entities\NetCoreFrameworkWorkShop.Entities.csproj" />
   </ItemGroup>
 
 </Project>
