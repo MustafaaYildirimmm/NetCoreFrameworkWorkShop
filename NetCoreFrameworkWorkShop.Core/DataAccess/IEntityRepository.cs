@@ -11,6 +11,7 @@ namespace NetCoreFrameworkWorkShop.Core.DataAccess
     public interface IEntityRepository<TEntity> where TEntity :class,IEntity,new()
     {
         TEntity FirstOrDefault(Expression<Func<TEntity,bool>> filter);
+        TEntity LastOrDefault(Expression<Func<TEntity,bool>> filter);
         IList<TEntity> GetList(Expression<Func<TEntity,bool>> filter = null);
         void Add(TEntity entity);
         void Update(TEntity entity);
