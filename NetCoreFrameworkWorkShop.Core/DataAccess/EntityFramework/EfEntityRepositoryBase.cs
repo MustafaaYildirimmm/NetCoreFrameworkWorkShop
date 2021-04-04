@@ -41,6 +41,23 @@ namespace NetCoreFrameworkWorkShop.Core.DataAccess.EntityFramework
             }
         }
 
+
+        public TEntity LastOrDefault(Expression<Func<TEntity, bool>> filter)
+        {
+            using (var context = new TContext())
+            {
+                return context.Set<TEntity>().LastOrDefault(filter);
+            }
+        }
+
+        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> filter)
+        {
+            using (var context = new TContext())
+            {
+                return context.Set<TEntity>().SingleOrDefault(filter);
+            }
+        }
+
         public IList<TEntity> GetList(Expression<Func<TEntity, bool>> filter = null)
         {
             using (var context = new TContext())
@@ -50,13 +67,6 @@ namespace NetCoreFrameworkWorkShop.Core.DataAccess.EntityFramework
             }
         }
 
-        public TEntity LastOrDefault(Expression<Func<TEntity, bool>> filter)
-        {
-            using (var context = new TContext())
-            {
-                return context.Set<TEntity>().LastOrDefault(filter);
-            }
-        }
 
         public void Update(TEntity entity)
         {

@@ -12,6 +12,7 @@ namespace NetCoreFrameworkWorkShop.Core.DataAccess
     {
         TEntity FirstOrDefault(Expression<Func<TEntity,bool>> filter);
         TEntity LastOrDefault(Expression<Func<TEntity,bool>> filter);
+        TEntity SingleOrDefault(Expression<Func<TEntity,bool>> filter);
         IList<TEntity> GetList(Expression<Func<TEntity,bool>> filter = null);
         void Add(TEntity entity);
         void Update(TEntity entity);
