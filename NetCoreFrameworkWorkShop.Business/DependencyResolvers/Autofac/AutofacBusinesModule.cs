@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using NetCoreFrameworkWorkShop.Business.Abstract;
 using NetCoreFrameworkWorkShop.Business.Concrete;
+using NetCoreFrameworkWorkShop.Core.Utilities.Security.JWT;
 using NetCoreFrameworkWorkShop.DataAccess.Abstract;
 using NetCoreFrameworkWorkShop.DataAccess.Concrete.EntityFramework;
 using System;
@@ -23,6 +24,9 @@ namespace NetCoreFrameworkWorkShop.Business.DependencyResolvers.Autofac
 
             builder.RegisterType<UserManager>().As<IUserService>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();
+
+            builder.RegisterType<AuthManager>().As<IAuthService>();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
         }
     }
