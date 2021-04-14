@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NetCoreFrameworkWorkShop.DataAccess.EntityFramework.Contexts
+namespace NetCoreFrameworkWorkShop.DataAccess.Concrete.EntityFramework.Contexts
 {
     public class NorthwindContext : DbContext
     {
@@ -17,5 +17,8 @@ namespace NetCoreFrameworkWorkShop.DataAccess.EntityFramework.Contexts
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
     }
 }

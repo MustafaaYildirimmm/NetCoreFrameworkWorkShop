@@ -2,7 +2,7 @@
 using NetCoreFrameworkWorkShop.Business.Abstract;
 using NetCoreFrameworkWorkShop.Business.Concrete;
 using NetCoreFrameworkWorkShop.DataAccess.Abstract;
-using NetCoreFrameworkWorkShop.DataAccess.EntityFramework;
+using NetCoreFrameworkWorkShop.DataAccess.Concrete.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
