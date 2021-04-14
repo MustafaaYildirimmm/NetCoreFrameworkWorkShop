@@ -1,4 +1,5 @@
 ﻿using NetCoreFrameworkWorkShop.Core.DataAccess.EntityFramework;
+using NetCoreFrameworkWorkShop.Core.Entities.Concrete;
 using NetCoreFrameworkWorkShop.DataAccess.Abstract;
 using NetCoreFrameworkWorkShop.DataAccess.Concrete.EntityFramework.Contexts;
 using NetCoreFrameworkWorkShop.Entities.Concrete;

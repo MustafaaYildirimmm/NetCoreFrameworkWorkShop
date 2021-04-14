@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NetCoreFrameworkWorkShop.Core.Entities.Concrete;
 using NetCoreFrameworkWorkShop.Entities.Concrete;
 using System;
 using System.Collections.Generic;

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NetCoreFrameworkWorkShop.Entities.Concrete
+namespace NetCoreFrameworkWorkShop.Core.Entities.Concrete
 {
     public class User : IEntity
     {

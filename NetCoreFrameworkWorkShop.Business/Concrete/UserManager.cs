@@ -1,4 +1,5 @@
 ﻿using NetCoreFrameworkWorkShop.Business.Abstract;
+using NetCoreFrameworkWorkShop.Core.Entities.Concrete;
 using NetCoreFrameworkWorkShop.DataAccess.Abstract;
 using NetCoreFrameworkWorkShop.Entities.Concrete;
 using System;
