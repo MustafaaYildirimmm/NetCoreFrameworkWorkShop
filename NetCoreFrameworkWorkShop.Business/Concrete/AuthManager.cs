@@ -38,7 +38,7 @@ namespace NetCoreFrameworkWorkShop.Business.Concrete
 
             if (userToCheck is null)  return new ErrorDataResult<User>(Messages.UserNotFound);
 
-            if (HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt)) return new ErrorDataResult<User>(Messages.PasswordError);
+            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt)) return new ErrorDataResult<User>(Messages.PasswordError);
 
             return new SuccessDataResult<User>(userToCheck,Messages.SuccesFullLogin);
         }
