@@ -1,5 +1,7 @@
 ﻿using NetCoreFrameworkWorkShop.Business.Abstract;
 using NetCoreFrameworkWorkShop.Business.Constants;
+using NetCoreFrameworkWorkShop.Business.ValidationRules.FluentValidation;
+using NetCoreFrameworkWorkShop.Core.Aspects.Autofac.Validation;
 using NetCoreFrameworkWorkShop.Core.Utilities.Results;
 using NetCoreFrameworkWorkShop.DataAccess.Abstract;
 using NetCoreFrameworkWorkShop.Entities.Concrete;
@@ -20,6 +22,7 @@ namespace NetCoreFrameworkWorkShop.Business.Concrete
             _productDal = productDal;
         }
 
+        [ValidationAspect(typeof(ProductValidator),Priorty =1)]
         public IResult Add(Product product)
         {
             _productDal.Add(product);
