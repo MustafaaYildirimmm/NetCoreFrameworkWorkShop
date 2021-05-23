@@ -1,7 +1,9 @@
 ﻿using NetCoreFrameworkWorkShop.Business.Abstract;
 using NetCoreFrameworkWorkShop.Business.Constants;
 using NetCoreFrameworkWorkShop.Business.ValidationRules.FluentValidation;
+using NetCoreFrameworkWorkShop.Core.Aspects.Autofac.Caching;
 using NetCoreFrameworkWorkShop.Core.Aspects.Autofac.Validation;
+using NetCoreFrameworkWorkShop.Core.Aspects.Transaction;
 using NetCoreFrameworkWorkShop.Core.Utilities.Results;
 using NetCoreFrameworkWorkShop.DataAccess.Abstract;
 using NetCoreFrameworkWorkShop.Entities.Concrete;
@@ -23,6 +25,7 @@ namespace NetCoreFrameworkWorkShop.Business.Concrete
         }
 
         [ValidationAspect(typeof(ProductValidator),Priorty =1)]
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
             _productDal.Add(product);
@@ -50,9 +53,19 @@ namespace NetCoreFrameworkWorkShop.Business.Concrete
             return new SuccessDataResult<IList<Product>>(_productDal.GetList().ToList());
         }
 
+        [CacheAspect(duration:10)]
         public IDataResult<IList<Product>> GetListByCategory(int categoryId)
         {
             return new SuccessDataResult<IList<Product>>(_productDal.GetList(p => p.CategoryId == categoryId).ToList());
+        }
+
+        [TransactionScopeAspect]
+        public IResult TransactionalOperation(Product product)
+        {
+            _productDal.Update(product);
+            _productDal.Add(product);
+
+            return new SuccessResult(Messages.ProductUpdated);
         }
     }
 }

@@ -8,6 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using NetCoreFrameworkWorkShop.Core.DependencyResolver;
+using NetCoreFrameworkWorkShop.Core.Extensions;
+using NetCoreFrameworkWorkShop.Core.Utilities.Ioc;
 using NetCoreFrameworkWorkShop.Core.Utilities.Security.Encryption;
 using NetCoreFrameworkWorkShop.Core.Utilities.Security.JWT;
 using System;
@@ -55,6 +58,11 @@ namespace NetCoreFrameworkWorkShop.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "NetCoreFrameworkWorkShop.API", Version = "v1" });
             });
+
+            services.AddDependencyResolver(new ICoreModule[]
+            {
+                new CoreModule()
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,6 +89,8 @@ namespace NetCoreFrameworkWorkShop.API
             {
                 endpoints.MapControllers();
             });
+
+
         }
     }
 }
