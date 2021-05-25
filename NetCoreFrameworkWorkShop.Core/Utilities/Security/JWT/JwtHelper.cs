@@ -23,7 +23,6 @@ namespace NetCoreFrameworkWorkShop.Core.Utilities.Security.JWT
         {
             Configuration = configuration;
             _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
-            _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
         }
 
         public AccessToken CreateToken(User user, List<OperationClaim> operationClaims)
@@ -43,9 +42,7 @@ namespace NetCoreFrameworkWorkShop.Core.Utilities.Security.JWT
 
         public JwtSecurityToken CreateJwtSecuityToken(TokenOptions tokenOptions,User user,SigningCredentials signingCredentials,List<OperationClaim> operationClaims)
         {
-            if (DateTime.Now.AddSeconds(45) >= _accessTokenExpiration)  {
-                _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
-            }
+            _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
 
             var jwt = new JwtSecurityToken(
                     issuer: tokenOptions.Issuer,
