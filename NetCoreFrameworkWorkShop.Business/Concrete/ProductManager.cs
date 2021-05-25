@@ -2,9 +2,12 @@
 using NetCoreFrameworkWorkShop.Business.Abstract;
 using NetCoreFrameworkWorkShop.Business.Constants;
 using NetCoreFrameworkWorkShop.Business.ValidationRules.FluentValidation;
+using NetCoreFrameworkWorkShop.Core.Aspects;
 using NetCoreFrameworkWorkShop.Core.Aspects.Autofac.Caching;
+using NetCoreFrameworkWorkShop.Core.Aspects.Autofac.Logging;
 using NetCoreFrameworkWorkShop.Core.Aspects.Autofac.Validation;
 using NetCoreFrameworkWorkShop.Core.Aspects.Transaction;
+using NetCoreFrameworkWorkShop.Core.CrossCuttingConcerns.Logging.Log4Net;
 using NetCoreFrameworkWorkShop.Core.Utilities.Results;
 using NetCoreFrameworkWorkShop.DataAccess.Abstract;
 using NetCoreFrameworkWorkShop.Entities.Concrete;
@@ -12,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace NetCoreFrameworkWorkShop.Business.Concrete
@@ -49,13 +53,15 @@ namespace NetCoreFrameworkWorkShop.Business.Concrete
             return new SuccessDataResult<Product>(_productDal.FirstOrDefault(p => p.ProductID == productId));
         }
 
-        [SecuredOpeartion(new string[]{ "Product.List" })]
+       // [SecuredOpeartion(new string[]{ "Product.List" })]
+        [PerformanceAspect(5)]
         public IDataResult<IList<Product>> GetList()
         {
             return new SuccessDataResult<IList<Product>>(_productDal.GetList().ToList());
         }
 
         [CacheAspect(duration:10)]
+        [LogAspect(typeof(FileLogger))]
         public IDataResult<IList<Product>> GetListByCategory(int categoryId)
         {
             return new SuccessDataResult<IList<Product>>(_productDal.GetList(p => p.CategoryId == categoryId).ToList());

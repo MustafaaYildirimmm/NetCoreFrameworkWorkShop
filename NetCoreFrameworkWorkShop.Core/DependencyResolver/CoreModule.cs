@@ -5,6 +5,7 @@ using NetCoreFrameworkWorkShop.Core.CrossCuttingConcerns.Caching.Microsoft;
 using NetCoreFrameworkWorkShop.Core.Utilities.Ioc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace NetCoreFrameworkWorkShop.Core.DependencyResolver
             services.AddMemoryCache();
             services.AddSingleton<ICacheManager, MemorycacheManager>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<Stopwatch>();
         }
     }
 }
