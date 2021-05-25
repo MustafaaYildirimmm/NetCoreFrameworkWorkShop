@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using NetCoreFrameworkWorkShop.Core.CrossCuttingConcerns.Caching;
 using NetCoreFrameworkWorkShop.Core.CrossCuttingConcerns.Caching.Microsoft;
 using NetCoreFrameworkWorkShop.Core.Utilities.Ioc;
@@ -16,6 +17,7 @@ namespace NetCoreFrameworkWorkShop.Core.DependencyResolver
         {
             services.AddMemoryCache();
             services.AddSingleton<ICacheManager, MemorycacheManager>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
     }
 }

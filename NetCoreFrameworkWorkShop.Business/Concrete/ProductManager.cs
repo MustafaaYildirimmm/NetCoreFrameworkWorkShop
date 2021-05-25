@@ -1,4 +1,5 @@
-﻿using NetCoreFrameworkWorkShop.Business.Abstract;
+﻿using Microsoft.AspNetCore.Http;
+using NetCoreFrameworkWorkShop.Business.Abstract;
 using NetCoreFrameworkWorkShop.Business.Constants;
 using NetCoreFrameworkWorkShop.Business.ValidationRules.FluentValidation;
 using NetCoreFrameworkWorkShop.Core.Aspects.Autofac.Caching;
@@ -24,7 +25,7 @@ namespace NetCoreFrameworkWorkShop.Business.Concrete
             _productDal = productDal;
         }
 
-        [ValidationAspect(typeof(ProductValidator),Priorty =1)]
+        [ValidationAspect(typeof(ProductValidator), Priorty = 1)]
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
@@ -48,6 +49,7 @@ namespace NetCoreFrameworkWorkShop.Business.Concrete
             return new SuccessDataResult<Product>(_productDal.FirstOrDefault(p => p.ProductID == productId));
         }
 
+        [SecuredOpeartion(new string[]{ "Product.List" })]
         public IDataResult<IList<Product>> GetList()
         {
             return new SuccessDataResult<IList<Product>>(_productDal.GetList().ToList());

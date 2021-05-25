@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NetCoreFrameworkWorkShop.Business.Abstract;
+using NetCoreFrameworkWorkShop.Core.Entities.Concrete;
 using NetCoreFrameworkWorkShop.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace NetCoreFrameworkWorkShop.API.Controllers
         }
 
         [HttpGet("getall")]
-        [Authorize(Roles ="Product.List")]
+        //[Authorize(Roles ="Product.List")]
         public IActionResult GetList()
         {
             var result = _productService.GetList();
