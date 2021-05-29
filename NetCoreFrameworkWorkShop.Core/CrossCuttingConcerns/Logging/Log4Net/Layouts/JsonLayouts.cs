@@ -1,6 +1,5 @@
 ﻿using log4net.Core;
 using log4net.Layout;
-using NetCoreFrameworkWorkShop.Core.CrossCuttingConcerns.Logging.Log4Net;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,13 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NetCoreFrameworkWorkShop.CrossCuttingConcerns.Logging.Log4Net.Layouts
+namespace NetCoreFrameworkWorkShop.Core.CrossCuttingConcerns.Logging.Log4Net.Layouts
 {
-    public class JsonLayout : LayoutSkeleton
+    public class JsonLayouts : LayoutSkeleton
     {
+
         public override void ActivateOptions()
         {
-            
+
         }
 
         public override void Format(TextWriter writer, LoggingEvent loggingEvent)

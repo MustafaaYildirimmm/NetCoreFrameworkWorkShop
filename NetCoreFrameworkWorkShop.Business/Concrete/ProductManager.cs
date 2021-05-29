@@ -60,8 +60,9 @@ namespace NetCoreFrameworkWorkShop.Business.Concrete
             return new SuccessDataResult<IList<Product>>(_productDal.GetList().ToList());
         }
 
-        [CacheAspect(duration:10)]
+       // [CacheAspect(duration:10)]
         [LogAspect(typeof(FileLogger))]
+        [LogAspect(typeof(DatabaseLogger))]
         public IDataResult<IList<Product>> GetListByCategory(int categoryId)
         {
             return new SuccessDataResult<IList<Product>>(_productDal.GetList(p => p.CategoryId == categoryId).ToList());
