@@ -11,7 +11,7 @@ namespace NetCoreFrameworkWorkShop.Core.Utilities.Interceptors
     {
         protected virtual void OnBefore(IInvocation invocation) { }
         protected virtual void OnAfter(IInvocation invocation) { }
-        protected virtual void OnException(IInvocation invocation) { }
+        protected virtual void OnException(IInvocation invocation,System.Exception e) { }
         protected virtual void OnSuccess(IInvocation invocation) { }
 
         public override void Intercept(IInvocation invocation)
@@ -25,7 +25,8 @@ namespace NetCoreFrameworkWorkShop.Core.Utilities.Interceptors
             catch (Exception ex)
             {
                 isSuccess = false;
-                OnException(invocation);
+                OnException(invocation,ex);
+                throw;
             }
             finally
             {

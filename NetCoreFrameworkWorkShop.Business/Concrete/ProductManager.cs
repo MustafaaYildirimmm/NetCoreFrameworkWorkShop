@@ -4,6 +4,7 @@ using NetCoreFrameworkWorkShop.Business.Constants;
 using NetCoreFrameworkWorkShop.Business.ValidationRules.FluentValidation;
 using NetCoreFrameworkWorkShop.Core.Aspects;
 using NetCoreFrameworkWorkShop.Core.Aspects.Autofac.Caching;
+using NetCoreFrameworkWorkShop.Core.Aspects.Autofac.Exception;
 using NetCoreFrameworkWorkShop.Core.Aspects.Autofac.Logging;
 using NetCoreFrameworkWorkShop.Core.Aspects.Autofac.Validation;
 using NetCoreFrameworkWorkShop.Core.Aspects.Transaction;

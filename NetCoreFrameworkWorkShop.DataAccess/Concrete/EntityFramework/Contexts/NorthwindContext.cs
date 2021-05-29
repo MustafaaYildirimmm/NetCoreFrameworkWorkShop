@@ -13,7 +13,7 @@ namespace NetCoreFrameworkWorkShop.DataAccess.Concrete.EntityFramework.Contexts
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=Northwind;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=Northwindd;Integrated Security=True");
         }
 
         public DbSet<Product> Products { get; set; }

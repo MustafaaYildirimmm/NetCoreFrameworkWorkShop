@@ -17,7 +17,7 @@ namespace NetCoreFrameworkWorkShop.Core.Aspects.Autofac.Validation
         {
             if (!typeof(IValidator).IsAssignableFrom(validatorType))
             {
-                throw new Exception("Wrong validator type");
+                throw new System.Exception("Wrong validator type");
             }
 
             _validatorType = validatorType;

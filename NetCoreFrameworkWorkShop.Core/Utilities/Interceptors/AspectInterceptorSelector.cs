@@ -1,4 +1,6 @@
 ﻿using Castle.DynamicProxy;
+using NetCoreFrameworkWorkShop.Core.Aspects.Autofac.Exception;
+using NetCoreFrameworkWorkShop.Core.CrossCuttingConcerns.Logging.Log4Net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,7 @@ namespace NetCoreFrameworkWorkShop.Core.Utilities.Interceptors
             var methodAttributes = type.GetMethod(method.Name).GetCustomAttributes<MethodInterceptionBaseAttribute>(true);
 
             classAttributes.AddRange(methodAttributes);
+            classAttributes.Add(new ExceptionLogAspect(typeof(FileLogger)));
 
             return classAttributes.OrderBy(x => x.Priorty).ToArray();
         }
