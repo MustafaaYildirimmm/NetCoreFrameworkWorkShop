@@ -9,6 +9,7 @@ using NetCoreFrameworkWorkShop.Core.Aspects.Autofac.Logging;
 using NetCoreFrameworkWorkShop.Core.Aspects.Autofac.Validation;
 using NetCoreFrameworkWorkShop.Core.Aspects.Transaction;
 using NetCoreFrameworkWorkShop.Core.CrossCuttingConcerns.Logging.Log4Net;
+using NetCoreFrameworkWorkShop.Core.Utilities.Business;
 using NetCoreFrameworkWorkShop.Core.Utilities.Results;
 using NetCoreFrameworkWorkShop.DataAccess.Abstract;
 using NetCoreFrameworkWorkShop.Entities.Concrete;
@@ -23,20 +24,30 @@ namespace NetCoreFrameworkWorkShop.Business.Concrete
 {
     public class ProductManager : IProductService
     {
-        IProductDal _productDal;
+        private IProductDal _productDal;
+        private ICategoryService _categoryService;
 
-        public ProductManager(IProductDal productDal)
+        public ProductManager(IProductDal productDal, ICategoryService categoryService)
         {
             _productDal = productDal;
+            _categoryService = categoryService;
         }
 
         [ValidationAspect(typeof(ProductValidator), Priorty = 1)]
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
+            IResult result = BusinessRules.Run(CheckIfProductNameExist(product.ProductName), CheckIfCategoryIsEnabeld());
+            if (result != null)
+            {
+                return result;
+            }
+
             _productDal.Add(product);
             return new SuccessResult(message: Messages.ProductAdded);
         }
+
+      
 
         public IResult Delete(Product product)
         {
@@ -77,5 +88,31 @@ namespace NetCoreFrameworkWorkShop.Business.Concrete
 
             return new SuccessResult(Messages.ProductUpdated);
         }
+
+
+
+        #region PrivateMethods
+
+        private IResult CheckIfProductNameExist(string productName)
+        {
+            if (_productDal.FirstOrDefault(p => p.ProductName == productName) != null)
+            {
+                return new ErrorResult(Messages.ProductNameAlreadyExist);
+            }
+
+            return new SuccessResult();
+        }
+        private IResult CheckIfCategoryIsEnabeld()
+        {
+            var result = _categoryService.GetList();
+            if (result.Data.Count < 10)
+            {
+                return new ErrorResult(Messages.ProductNameAlreadyExist);
+            }
+
+            return new SuccessResult();
+        }
+
+        #endregion
     }
 }

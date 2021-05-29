@@ -27,5 +27,7 @@ namespace NetCoreFrameworkWorkShop.Business.Constants
         public static string AccessTokenCreated = "Access Token başarı ile olusturuldu.";
 
         public static string AuthorizationDenied = "Yetkiniz yoktur.";
+
+        public static string ProductNameAlreadyExist = "Ürünm ismi zaten mevcut";
     }
 }
